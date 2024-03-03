@@ -4,9 +4,8 @@ fun main() {
     val monthTransactionsAmount = 100_000.00
     val transactionAmount = readln().toDouble()
     val paymentSystemType = "Visa"
-    val minCommission = 35.00
 
-    fun visaCommissionCount(transactionAmount: Double): Double {
+    fun visaCommissionCount(transactionAmount: Double, minCommission: Double = 35.00): Double {
 
         commission = transactionAmount * 0.075
         if (commission < 35.00) {
@@ -15,13 +14,15 @@ fun main() {
         return commission
     }
 
-    fun mastercardCommissionCount(transactionAmount: Double): Double {
+    fun mastercardCommissionCount(transactionAmount: Double, noCommissionLimit: Double = 75_000.0): Double {
 
-        commission = if (transactionAmount > 75_000.00) {
-            (transactionAmount - 75_000.00) * 0.06 + 20.00
-        } else {
-            0.0
+        if (monthTransactionsAmount > noCommissionLimit) {
+            commission = transactionAmount * 0.06 + 20
         }
+        commission = if ((monthTransactionsAmount + transactionAmount > noCommissionLimit) && (monthTransactionsAmount < noCommissionLimit)) {
+            (monthTransactionsAmount + transactionAmount - 75_000) * 0.06 + 20
+        } else 0.0
+
         return commission
     }
 
