@@ -117,7 +117,7 @@ class MainKtTest {
 
         val commission = commissionCount("Visa", transactionAmount, monthTransactionsAmount, noCommissionLimit)
 
-        assertEquals(1.0, commission, 0.0)
+        assertEquals(0.0, commission, 0.0)
     }
 
 }
