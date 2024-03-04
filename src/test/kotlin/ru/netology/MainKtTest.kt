@@ -109,7 +109,7 @@ class MainKtTest {
     }
 
     @Test
-    fun commissionCountPaymentSystemNoName() {
+    fun commissionCountMaxLimitsReached() {
 
         val transactionAmount = 150_000.0
         val monthTransactionsAmount = 500_000.0
@@ -117,7 +117,7 @@ class MainKtTest {
 
         val commission = commissionCount("Visa", transactionAmount, monthTransactionsAmount, noCommissionLimit)
 
-        assertEquals(0.0, commission, 0.0)
+        assertEquals(1.0, commission, 0.0)
     }
 
 }
